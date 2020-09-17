@@ -1,3 +1,4 @@
+
 $(".submit").on("click", function () {
     //clear();
     var queryParams = { "APPID": "8c321cc1716884b0a6eec6410a70fa25" }
@@ -304,11 +305,3 @@ $(".submit").on("click", function () {
             }).catch(function (err) { console.log(err) })
         }
     });
-})
-
-
-
-
-
-
-
