@@ -1,8 +1,8 @@
 
-$(".submit").on("click", function () {
+$("#submit").on("click", function () {
     //clear();
     var queryParams = { "APPID": "8c321cc1716884b0a6eec6410a70fa25" }
-    queryParams.q = $(".city-input").val().trim();
+    queryParams.q = $("#city-input").val().trim();
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?"
     queryURL = queryURL + $.param(queryParams);
 
@@ -22,13 +22,17 @@ $(".submit").on("click", function () {
         $(".current").append("Humidity: ", humidity, "%")
         $(".current").append("Wind Speed: ", windSpeed, "KPH")
         var countryCode = response.sys.country
-        // date <= date object 
 
-        var date = Date()
+        // date & next date
+        var date = moment().format();
+        var nextDate = moment().add(1, 'days').format()
+        date = date.slice(0,11) +"00:00:00Z"
+        nextDate = nextDate.slice(0,11)+ "00:00:00Z"
         console.log(date)
+        console.log(nextDate)
 
         $.ajax({
-            url: "https://api.covid19api.com/total/country/" + countryCode + "/status/recovered?from=2020-09-14T00:00:00Z&to=2020-09-15T00:00:00Z",
+            url: "https://api.covid19api.com/total/country/" + countryCode + "/status/recovered?from=" + date + "&to=" + nextDate,
             method: "GET"
         }).then(function (response) {
             var totalCases = response[0].Cases
