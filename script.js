@@ -1,13 +1,13 @@
 
 //$("#currentDay").text(moment().format("dddd MMMM Do YYYY"));
 
-$(".submit").on("click", function () {
+$("#submit").on("click", function () {
 
   //clear();
 
   var queryParams = { "APPID": "8c321cc1716884b0a6eec6410a70fa25" }
 
-  queryParams.q = $(".city-input").val().trim();
+  queryParams.q = $("#city-input").val().trim();
 
   var queryURL = "http://api.openweathermap.org/data/2.5/weather?"
 
@@ -28,12 +28,12 @@ $(".submit").on("click", function () {
     var currentTemp = $("<p>").text(celsTemp)
     var humidity = $("<p>").text(response.main.humidity)
     var windSpeed = $("<p>").text(response.wind.speed)
-    $(".current").append(cityName)
-    $(".current").append("Temperature: ", currentTemp)
-    $(".current").append("Humidity: ", humidity)
-    $(".current").append("Wind Speed: ", windSpeed)
+    $("#current").append(cityName)
+    $("#current").append("Temperature: ", currentTemp)
+    $("#current").append("Humidity: ", humidity)
+    $("#current").append("Wind Speed: ", windSpeed)
     var countryCode = response.sys.country
-    
+
 
     $.ajax({
       url: "https://api.covid19api.com/total/country/" + countryCode + "/status/recovered?from=2020-09-14T00:00:00Z&to=2020-09-15T00:00:00Z",
@@ -43,7 +43,7 @@ $(".submit").on("click", function () {
       console.log(response[0].Cases)
 
       var totalCases = response[0].Cases
-      $(".covid").text(totalCases)
+      $("#covid").text("Total Cases of COVID-19: " + totalCases)
 
     })
 
@@ -304,11 +304,11 @@ $(".submit").on("click", function () {
 
     let obj = array.find(o => o.country === countryCode)
     console.log(obj.currency)
-    
+
 
     //var currencyApi = "077422a8ec047bea40fab6ea"
     var currencyRateURl = "https://v6.exchangerate-api.com/v6/077422a8ec047bea40fab6ea/latest/" + obj.currency
-    
+
     $.ajax({
       url: currencyRateURl,
       method: "GET"

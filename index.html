@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Project 1</title>
+    <title>Travel Time</title>
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
@@ -19,39 +19,57 @@
 </head>
 
 <body>
-    <header class="uk-container  fixed-top">
+    <header>
 
         <!-- Navbar -->
-        <nav class="uk-navbar-container" uk-navbar>
-            <div class="uk-navbar">
 
-                <ul class="uk-navbar-nav">
-                    <li class="uk-active"><a href="#"><span uk-icon="icon: world"></span></a></li>
-                    <li>
-                        <a href="#">Major Currency</a>
-                        <div class="uk-navbar-dropdown">
-                            <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li><a href="#">Item</a></li>
-                                <li><a href="#">Item</a></li>
-                            </ul>
+        <body>
+            <header class="uk-background-secondary uk-light uk-padding uk-panel">
+                <nav>
+                    <div class="uk-navbar-left">
+                        <h1>Holiday Sweet Spot</h1>
+
+                        <div class="uk-navbar-right">
+                            <form>
+                                <div class="uk-flex uk-flex-center" class="uk-margin">
+                                    <div>
+                                        <input class="uk-input uk-form-width-medium" id="city-input" type="text"
+                                            placeholder="Pick a City">
+                                        <button type="button" class="uk-button uk-button-default" id="submit"><span
+                                                uk-icon="search"></span></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </li>
-                    <li>
-                        <a href="#">Covid cases</a>
-                        <div class="uk-navbar-dropdown">
-                            <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li><a href="#">Item</a></li>
-                                <li><a href="#">Item</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+                    </div>
+                </nav>
+            </header>
+            <section class="search-location">
+                <div>
 
-
-        </nav>
-    </header>
-    <script src="uikit/dist/js/uikit-icons.min.js"></script>
-    <script src="script.js"></script>
-</body>
+                </div>
+                <div id="covid"></div>
+                <div id="current"></div>
+                <div id="map"></div>
+            </section>
+            <!-- UIkit JS -->
+            <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+            <script src="uikit/dist/js/uikit-icons.min.js"></script>
+            <!-- Jquery JS -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <!-- google maps -->
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCisxdhsD1_i5Pao60DV8Zaa818FtpryyQ&callback=initMap"></script>
+            <script src="script.js"></script>
+            <footer class="uk-background-secondary uk-light uk-padding uk-panel">
+                <div class="uk-grid-column-large uk-grid-row-large uk-child-width-1-4@s uk-text-center" uk-grid>
+                    <p>Zane Pemberton</p>
+                    <p>Alan Chang</p>
+                    <p>Christopher Stogstad</p>
+                    <p>Amelia Roberts</p>
+                </div>
+            </footer>
+        </body>
 
 </html>
