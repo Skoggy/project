@@ -1,6 +1,13 @@
 
+function clearAll() {
+    $("#city-name").empty()
+    $("#current").empty()
+    $("#currency").empty()
+    $("#covid").empty()
+}
+
 $("#submit").on("click", function () {
-    //clear();
+    clearAll();
     var queryParams = { "APPID": "8c321cc1716884b0a6eec6410a70fa25" }
     queryParams.q = $("#city-input").val().trim();
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?"
@@ -10,24 +17,25 @@ $("#submit").on("click", function () {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-
         var kelvinChange = 273.15
-        var cityName = $("<h2>").text(response.name);
+        var cityName = $("<h1>").text(response.name);
         var celsTemp = (response.main.feels_like) - kelvinChange
-        var currentTemp = $("<p>").text(celsTemp)
-        var humidity = $("<p>").text(response.main.humidity)
-        var windSpeed = $("<p>").text(response.wind.speed)
-        $(".current").append(cityName)
-        $(".current").append("Temperature: ", currentTemp, "C")
-        $(".current").append("Humidity: ", humidity, "%")
-        $(".current").append("Wind Speed: ", windSpeed, "KPH")
+        var celsDec = celsTemp.toFixed(2)
+        var currentTemp = $("<h3>").text("Temperature: " + celsDec + "C")
+        var humidity = $("<h3>").text("Humidity: " + response.main.humidity + "%")
+        var windSpeed = $("<h3>").text("Wind Speed: " + response.wind.speed + "KPH")
+        $("#city-name").append(cityName)
+        $("#current").append(currentTemp)
+        $("#current").append(humidity)
+        $("#current").append(windSpeed)
+
         var countryCode = response.sys.country
 
         // date & next date
         var date = moment().format();
         var nextDate = moment().add(1, 'days').format()
-        date = date.slice(0,11) +"00:00:00Z"
-        nextDate = nextDate.slice(0,11)+ "00:00:00Z"
+        date = date.slice(0, 11) + "00:00:00Z"
+        nextDate = nextDate.slice(0, 11) + "00:00:00Z"
         console.log(date)
         console.log(nextDate)
 
@@ -36,7 +44,10 @@ $("#submit").on("click", function () {
             method: "GET"
         }).then(function (response) {
             var totalCases = response[0].Cases
-            $(".covid").text(totalCases)
+            var covidTotal = $("<h2>").text("Total Covid 19 Cases: " + totalCases)
+            $("#covid").append(covidTotal)
+            console.log(totalCases)
+
         })
         let array = {
             "AD": "EUR",
@@ -296,7 +307,7 @@ $("#submit").on("click", function () {
 
         //var currencyApi = "077422a8ec047bea40fab6ea"
         if (obj) {
-            var currencyRateURl = "https://v6.exchangerate-api.com/v6/077422a8ec047bea40fab6ea/latest/" + obj.currency
+            var currencyRateURl = "https://v6.exchangerate-api.com/v6/077422a8ec047bea40fab6ea/latest/" + obj
 
             $.ajax({
                 url: currencyRateURl,
@@ -306,6 +317,14 @@ $("#submit").on("click", function () {
                 console.log(inverseCurrency)
                 var currencyRateDecimal = 1 / inverseCurrency
                 currencyRate = currencyRateDecimal.toFixed(3)
+                var rate = $("<h2>").text("One Australian Dollar will buy you " + currencyRate + obj)
+
+                $("#currency").append(rate);
+
             }).catch(function (err) { console.log(err) })
         }
+
     });
+})
+
+
