@@ -8,6 +8,7 @@ function clearAll() {
 
 $("#submit").on("click", function () {
     clearAll();
+
     var queryParams = { "APPID": "8c321cc1716884b0a6eec6410a70fa25" }
     queryParams.q = $("#city-input").val().trim();
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?"
@@ -17,11 +18,25 @@ $("#submit").on("click", function () {
         url: queryURL,
         method: "GET"
     }).then(function (response) {
-        var kelvinChange = 273.15
-        var cityName = $("<h1>").text(response.name);
-        var celsTemp = (response.main.feels_like) - kelvinChange
 
-       
+        initMap();
+
+        function initMap() {
+            var location = { lat: response.coord.lat, lng: response.coord.lon }
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 10,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+
+
+
+
+
         // date & next date
         var twoDaysAgo = moment().subtract(2, 'days').format();
         var yesterday = moment().subtract(1, 'days').format();
@@ -29,7 +44,10 @@ $("#submit").on("click", function () {
         yesterday = yesterday.slice(0, 11) + "00:00:00Z"
         console.log(twoDaysAgo)
         console.log(yesterday)
-      
+
+        var kelvinChange = 273.15
+        var cityName = $("<h1>").text(response.name);
+        var celsTemp = (response.main.feels_like) - kelvinChange
         var celsDec = celsTemp.toFixed(2)
         var currentTemp = $("<h3>").text("Temperature: " + celsDec + "C")
         var humidity = $("<h3>").text("Humidity: " + response.main.humidity + "%")
@@ -324,7 +342,7 @@ $("#submit").on("click", function () {
                 url: currencyRateURl,
                 method: "GET"
             }).then(function (response) {
-                var inverseCurrency = response.conversion_rates.AU
+                var inverseCurrency = response.conversion_rates.AUD
                 console.log(inverseCurrency)
                 var currencyRateDecimal = 1 / inverseCurrency
                 currencyRate = currencyRateDecimal.toFixed(3)
@@ -338,7 +356,7 @@ $("#submit").on("click", function () {
     });
 
 });
-})
+
 
 
 
