@@ -20,6 +20,16 @@ $("#submit").on("click", function () {
         var kelvinChange = 273.15
         var cityName = $("<h1>").text(response.name);
         var celsTemp = (response.main.feels_like) - kelvinChange
+
+       
+        // date & next date
+        var twoDaysAgo = moment().subtract(2, 'days').format();
+        var yesterday = moment().subtract(1, 'days').format();
+        twoDaysAgo = twoDaysAgo.slice(0, 11) + "00:00:00Z"
+        yesterday = yesterday.slice(0, 11) + "00:00:00Z"
+        console.log(twoDaysAgo)
+        console.log(yesterday)
+      
         var celsDec = celsTemp.toFixed(2)
         var currentTemp = $("<h3>").text("Temperature: " + celsDec + "C")
         var humidity = $("<h3>").text("Humidity: " + response.main.humidity + "%")
@@ -31,24 +41,25 @@ $("#submit").on("click", function () {
 
         var countryCode = response.sys.country
 
-        // date & next date
-        var date = moment().format();
-        var nextDate = moment().add(1, 'days').format()
-        date = date.slice(0, 11) + "00:00:00Z"
-        nextDate = nextDate.slice(0, 11) + "00:00:00Z"
-        console.log(date)
-        console.log(nextDate)
 
         $.ajax({
-            url: "https://api.covid19api.com/total/country/" + countryCode + "/status/recovered?from=" + date + "&to=" + nextDate,
+            url: "https://api.covid19api.com/total/country/" + countryCode + "/status/confirmed?from=" + twoDaysAgo + "&to=" + yesterday,
             method: "GET"
         }).then(function (response) {
+            console.log(response)
+            console.log(response[0].Cases)
+
             var totalCases = response[0].Cases
+
+            $("#covid").text(totalCases)
+
             var covidTotal = $("<h2>").text("Total Covid 19 Cases: " + totalCases)
             $("#covid").append(covidTotal)
             console.log(totalCases)
 
+
         })
+
         let array = {
             "AD": "EUR",
             "AE": "AED",
@@ -313,7 +324,7 @@ $("#submit").on("click", function () {
                 url: currencyRateURl,
                 method: "GET"
             }).then(function (response) {
-                var inverseCurrency = response.conversion_rates.AUD
+                var inverseCurrency = response.conversion_rates.AU
                 console.log(inverseCurrency)
                 var currencyRateDecimal = 1 / inverseCurrency
                 currencyRate = currencyRateDecimal.toFixed(3)
@@ -325,6 +336,9 @@ $("#submit").on("click", function () {
         }
 
     });
+
+});
 })
+
 
 
