@@ -35,13 +35,14 @@ $("#submit").on("click", function () {
 
 
 
-
-
-        // date & next date
+        // date 
+        var threeDaysAgo = moment().subtract(3, 'days').format();
         var twoDaysAgo = moment().subtract(2, 'days').format();
         var yesterday = moment().subtract(1, 'days').format();
+        threeDaysAgo = threeDaysAgo.slice(0, 11) + "00:00:00Z"
         twoDaysAgo = twoDaysAgo.slice(0, 11) + "00:00:00Z"
         yesterday = yesterday.slice(0, 11) + "00:00:00Z"
+        console.log(threeDaysAgo)
         console.log(twoDaysAgo)
         console.log(yesterday)
 
@@ -49,7 +50,7 @@ $("#submit").on("click", function () {
         var cityName = $("<h1>").text(response.name);
         var celsTemp = (response.main.feels_like) - kelvinChange
         var celsDec = celsTemp.toFixed(2)
-        var currentTemp = $("<h3>").text("Temperature: " + celsDec + "C")
+        var currentTemp = $("<h3>").text("Temperature: " + celsDec + "°C")
         var humidity = $("<h3>").text("Humidity: " + response.main.humidity + "%")
         var windSpeed = $("<h3>").text("Wind Speed: " + response.wind.speed + "KPH")
         $("#city-name").append(cityName)
@@ -59,7 +60,7 @@ $("#submit").on("click", function () {
 
         var countryCode = response.sys.country
 
-
+        //covid cases yesterday
         $.ajax({
             url: "https://api.covid19api.com/total/country/" + countryCode + "/status/confirmed?from=" + twoDaysAgo + "&to=" + yesterday,
             method: "GET"
@@ -69,15 +70,47 @@ $("#submit").on("click", function () {
 
             var totalCases = response[0].Cases
 
-            $("#covid").text(totalCases)
+            //covid cases two days ago
+            $.ajax({
+                url: "https://api.covid19api.com/total/country/" + countryCode + "/status/confirmed?from=" + threeDaysAgo + "&to=" + twoDaysAgo,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response)
+                console.log(response[0].Cases)
 
-            var covidTotal = $("<h2>").text("Total Covid 19 Cases: " + totalCases)
-            $("#covid").append(covidTotal)
-            console.log(totalCases)
+                //recent cases
+                var totalCasesTwoDaysAgo = response[0].Cases
+                var recentCase = parseInt(totalCases) - parseInt(totalCasesTwoDaysAgo)
 
+                //recovered cases
+                $.ajax({
+                    url: "https://api.covid19api.com/total/country/" + countryCode + "/status/recovered?from=" + twoDaysAgo + "&to=" + yesterday,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response)
+                    console.log(response[0].Cases)
 
+                    //active cases
+                    var recoveredCases = response[0].Cases
+                    var activeCase = parseInt(totalCases) - parseInt(recoveredCases)
+                    console.log(activeCase)
+
+                    var covidTotal = $("<h2>").text("Country Covid 19 Status: Total Cases: " + totalCases + "; " + "Recent Confirmed Cases: " + recentCase + "; " + "Active Cases: " + activeCase)
+                    $("#covid").append(covidTotal)
+
+                    //map color
+                    $("#map").css("border-style", "solid")
+                    $("#map").css("border-width", "10px")
+                    if (activeCase < 1000) {
+                        $("#map").css("border-color", "green")
+                    } else if (activeCase < 10000) {
+                        $("#map").css("border-color", "orange")
+                    } else {
+                        $("#map").css("border-color", "red")
+                    }
+                })
+            })
         })
-
         let array = {
             "AD": "EUR",
             "AE": "AED",
@@ -356,7 +389,3 @@ $("#submit").on("click", function () {
     });
 
 });
-
-
-
-
