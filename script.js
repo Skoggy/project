@@ -1,9 +1,7 @@
 
 function clearAll() {
-    $("#city-name").empty()
-    $("#current").empty()
-    $("#currency").empty()
-    $("#covid").empty()
+    $("#city-name, #current, #currency, #covid").empty()
+
 }
 
 $("#submit").on("click", function () {
@@ -23,7 +21,7 @@ $("#submit").on("click", function () {
 
         function initMap() {
             var location = { lat: response.coord.lat, lng: response.coord.lon }
-            var map = new google.maps.Map(document.getElementById("map"), {
+            var map = new google.maps.Map(document.querySelector("#map"), {
                 zoom: 10,
                 center: location
             });
