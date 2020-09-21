@@ -1,4 +1,12 @@
 #map  {
-    height: 400px;
-    width: 100%
+    height: 300px;
+    width: 40%;
+    float: right;
+}
+.city-name {
+    text-align: center;
+    text-decoration: underline;
+}
+.current {
+    text-align: center;
 }
