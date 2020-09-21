@@ -32,9 +32,6 @@ $("#submit").on("click", function () {
                 map: map
             });
         }
-
-
-
         // date 
         var threeDaysAgo = moment().subtract(3, 'days').format();
         var twoDaysAgo = moment().subtract(2, 'days').format();
@@ -42,9 +39,7 @@ $("#submit").on("click", function () {
         threeDaysAgo = threeDaysAgo.slice(0, 11) + "00:00:00Z"
         twoDaysAgo = twoDaysAgo.slice(0, 11) + "00:00:00Z"
         yesterday = yesterday.slice(0, 11) + "00:00:00Z"
-        console.log(threeDaysAgo)
-        console.log(twoDaysAgo)
-        console.log(yesterday)
+
 
         var kelvinChange = 273.15
         var cityName = $("<h1>").text(response.name);
@@ -65,8 +60,6 @@ $("#submit").on("click", function () {
             url: "https://api.covid19api.com/total/country/" + countryCode + "/status/confirmed?from=" + twoDaysAgo + "&to=" + yesterday,
             method: "GET"
         }).then(function (response) {
-            console.log(response)
-            console.log(response[0].Cases)
 
             var totalCases = response[0].Cases
 
@@ -75,8 +68,6 @@ $("#submit").on("click", function () {
                 url: "https://api.covid19api.com/total/country/" + countryCode + "/status/confirmed?from=" + threeDaysAgo + "&to=" + twoDaysAgo,
                 method: "GET"
             }).then(function (response) {
-                console.log(response)
-                console.log(response[0].Cases)
 
                 //recent cases
                 var totalCasesTwoDaysAgo = response[0].Cases
@@ -87,13 +78,10 @@ $("#submit").on("click", function () {
                     url: "https://api.covid19api.com/total/country/" + countryCode + "/status/recovered?from=" + twoDaysAgo + "&to=" + yesterday,
                     method: "GET"
                 }).then(function (response) {
-                    console.log(response)
-                    console.log(response[0].Cases)
 
                     //active cases
                     var recoveredCases = response[0].Cases
                     var activeCase = parseInt(totalCases) - parseInt(recoveredCases)
-                    console.log(activeCase)
 
                     var covidTotal = $("<h2>").text("Country Covid 19 Status: Total Cases: " + totalCases + "; " + "Recent Confirmed Cases: " + recentCase + "; " + "Active Cases: " + activeCase)
                     $("#covid").append(covidTotal)
@@ -364,10 +352,7 @@ $("#submit").on("click", function () {
         }
 
         let obj = array[countryCode]
-        // O(n)
-        // O(1)
 
-        //var currencyApi = "077422a8ec047bea40fab6ea"
         if (obj) {
             var currencyRateURl = "https://v6.exchangerate-api.com/v6/077422a8ec047bea40fab6ea/latest/" + obj
 
@@ -376,14 +361,15 @@ $("#submit").on("click", function () {
                 method: "GET"
             }).then(function (response) {
                 var inverseCurrency = response.conversion_rates.AUD
-                console.log(inverseCurrency)
                 var currencyRateDecimal = 1 / inverseCurrency
                 currencyRate = currencyRateDecimal.toFixed(3)
                 var rate = $("<h2>").text("One Australian Dollar will buy you " + currencyRate + obj)
-
                 $("#currency").append(rate);
 
-            }).catch(function (err) { console.log(err) })
+            }).catch(function (err) {
+                var rate = $("<h2>").text("Currency Conversion Unavailable")
+                $("#currency").append(rate);
+            })
         }
 
     });
