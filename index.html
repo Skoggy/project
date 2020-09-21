@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Project 1</title>
+    <title>Travel Time</title>
 
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
@@ -34,7 +34,7 @@
                                 <div class="uk-flex uk-flex-center" class="uk-margin">
                                     <div>
                                         <input class="uk-input uk-form-width-medium" id="city-input" type="text"
-                                            placeholder="Pick a City">
+                                            placeholder="Pick a City, Country Code">
                                         <button type="button" class="uk-button uk-button-default" id="submit"><span
                                                 uk-icon="search"></span></button>
                                     </div>
@@ -46,15 +46,19 @@
             </header>
 
             <section class="search-location" id="search-location">
-                <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-column-1-2" id="city-name"></div>
-                <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-column-1-2" id="currency">
-                </div>
-                <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-column-1-2" id="covid">
-                </div>
-                <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-column-1-2" id="current">
+                <div class="uk-container" class="results-container">
+                    <div class="uk-card uk-card-default uk-card-body">
 
+                        <div id="map"></div>
+                        <div>
+                            <div id="city-name" class="city-name"></div>
+                            <div id="current" class="current"></div><br><br><br>
+                            <div id="currency" class="currency"></div>
+                            <div id="covid" class="covid"></div>
+
+                        </div>
+                    </div>
                 </div>
-                <div id="map"></div>
             </section>
 
             <footer class="uk-background-secondary uk-light uk-padding uk-panel">
