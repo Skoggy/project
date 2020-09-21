@@ -1,12 +1,62 @@
+body {
+height: 100%;
+}
+
+.container {
+display: flex;
+flex-direction: column;
+height: 100%;
+}
+
+.container-test {
+    flex: 1 1 auto;
+    background-color: red;
+}
+
+header {
+    flex: 0 1 auto;
+}
+footer {
+    flex: 0 1 auto;
+}
+
 #map  {
     height: 300px;
     width: 40%;
     float: right;
 }
-.city-name {
+
+.city-name, .covid {
     text-align: center;
     text-decoration: underline;
+    
 }
-.current {
+
+.current, .currency {
     text-align: center;
+    line-height: 1px;
 }
+
+html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        #box {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+        }
+
+        header {
+            flex: 0 1 auto;
+        }
+
+        #content {
+            flex: 1 1 auto;
+        }
+
+        footer {
+            flex: 0 1 auto;
+        }

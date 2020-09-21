@@ -1,6 +1,6 @@
 
 function clearAll() {
-    $("#city-name, #current, #currency, #covid").empty()
+    $("#city-name, #current, #currency, #covid, #totalCases, #recentCase, #activeCase").empty()
 
 }
 
@@ -17,7 +17,6 @@ $("#submit").on("click", function () {
         method: "GET"
     }).then(function (response) {
 
-        initMap();
 
         function initMap() {
             var location = { lat: response.coord.lat, lng: response.coord.lon }
@@ -30,6 +29,7 @@ $("#submit").on("click", function () {
                 map: map
             });
         }
+        initMap();
         // date 
         var threeDaysAgo = moment().subtract(3, 'days').format();
         var twoDaysAgo = moment().subtract(2, 'days').format();
@@ -81,8 +81,15 @@ $("#submit").on("click", function () {
                     var recoveredCases = response[0].Cases
                     var activeCase = parseInt(totalCases) - parseInt(recoveredCases)
 
-                    var covidTotal = $("<h2>").text("Country Covid 19 Status: Total Cases: " + totalCases + "; " + "Recent Confirmed Cases: " + recentCase + "; " + "Active Cases: " + activeCase)
-                    $("#covid").append(covidTotal)
+                    var covidTotalH1 = $("<h2>").text("Country's Covid 19 Status: ");
+                    var totalcasesDiv = $("<p>").text("Total Cases: " + totalCases);
+                    var recentCaseDiv = $("<p>").text("Recent Confirmed Cases: " + recentCase);
+                    var activeCaseDiv = $("<p>").text("Active Cases: " + activeCase);
+                    $("#covid").append(covidTotalH1);
+                    $("#totalCases").append(totalcasesDiv);
+                    $("#recentCase").append(recentCaseDiv);
+                    $("#activeCase").append(activeCaseDiv);
+
 
                     //map color
                     $("#map").css("border-style", "solid")
@@ -361,7 +368,7 @@ $("#submit").on("click", function () {
                 var inverseCurrency = response.conversion_rates.AUD
                 var currencyRateDecimal = 1 / inverseCurrency
                 currencyRate = currencyRateDecimal.toFixed(3)
-                var rate = $("<h2>").text("One Australian Dollar will buy you " + currencyRate + obj)
+                var rate = $("<h3>").text("One Australian Dollar equals to " + currencyRate + obj)
                 $("#currency").append(rate);
 
             }).catch(function (err) {
