@@ -25,6 +25,9 @@
 h1 {
     margin-bottom: 20px;
 }
+h2 {
+    text-align: center;
+}
 h3 {
     margin-top: 5px;
 }
@@ -123,3 +126,14 @@ html,
     margin-left: 150px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
 }
+
+/* Media Queries for Phone Responsivity - front page */
+/* Commented out while page being updated */
+/* @media screen and (max-width: 660px) {
+    .frontp {
+    font-size: 18px;
+    }
+    .frontcontent {
+        width: 70%;
+    }
+} */
