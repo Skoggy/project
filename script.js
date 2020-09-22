@@ -1,12 +1,13 @@
 
+//clears the page before a new search is done.
 function clearAll() {
-    $("#city-name, #current, #currency, #covid, #totalCases, #recentCase, #activeCase").empty()
+    $("#city-name, #current, #currency, #covid, #totalCases, #recentCase, #activeCase").empty();
 
 }
 
 $("#submit").on("click", function () {
     clearAll();
-
+    //weather call
     var queryParams = { "APPID": "8c321cc1716884b0a6eec6410a70fa25" }
     queryParams.q = $("#city-input").val().trim();
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?"
@@ -17,7 +18,7 @@ $("#submit").on("click", function () {
         method: "GET"
     }).then(function (response) {
 
-
+        //map call, takes Lat and Long from weather app as the location
         function initMap() {
             var location = { lat: response.coord.lat, lng: response.coord.lon }
             var map = new google.maps.Map(document.querySelector("#map"), {
@@ -34,32 +35,29 @@ $("#submit").on("click", function () {
         var threeDaysAgo = moment().subtract(3, 'days').format();
         var twoDaysAgo = moment().subtract(2, 'days').format();
         var yesterday = moment().subtract(1, 'days').format();
-        threeDaysAgo = threeDaysAgo.slice(0, 11) + "00:00:00Z"
-        twoDaysAgo = twoDaysAgo.slice(0, 11) + "00:00:00Z"
-        yesterday = yesterday.slice(0, 11) + "00:00:00Z"
+        threeDaysAgo = threeDaysAgo.slice(0, 11) + "00:00:00Z";
+        twoDaysAgo = twoDaysAgo.slice(0, 11) + "00:00:00Z";
+        yesterday = yesterday.slice(0, 11) + "00:00:00Z";
 
-
+        //weather
         var kelvinChange = 273.15
         var cityName = $("<h1>").text(response.name);
-        var celsTemp = (response.main.feels_like) - kelvinChange
-        var celsDec = celsTemp.toFixed(2)
-        var currentTemp = $("<h3>").text("Temperature: " + celsDec + "°C")
-        var humidity = $("<h3>").text("Humidity: " + response.main.humidity + "%")
-        var windSpeed = $("<h3>").text("Wind Speed: " + response.wind.speed + "KPH")
-        $("#city-name").append(cityName)
-        $("#current").append(currentTemp)
-        $("#current").append(humidity)
-        $("#current").append(windSpeed)
-
-        var countryCode = response.sys.country
+        var celsTemp = (response.main.feels_like) - kelvinChange;
+        var celsDec = celsTemp.toFixed(2);
+        var currentTemp = $("<h3>").text("Temperature: " + celsDec + "°C");
+        var humidity = $("<h3>").text("Humidity: " + response.main.humidity + "%");
+        var windSpeed = $("<h3>").text("Wind Speed: " + response.wind.speed + "KPH");
+        $("#city-name").append(cityName);
+        $("#current").append(currentTemp, humidity, windSpeed);
+        //code to use for the country code to convert for currency API
+        var countryCode = response.sys.country;
 
         //covid cases yesterday
         $.ajax({
             url: "https://api.covid19api.com/total/country/" + countryCode + "/status/confirmed?from=" + twoDaysAgo + "&to=" + yesterday,
             method: "GET"
         }).then(function (response) {
-
-            var totalCases = response[0].Cases
+            var totalCases = response[0].Cases;
 
             //covid cases two days ago
             $.ajax({
@@ -68,8 +66,8 @@ $("#submit").on("click", function () {
             }).then(function (response) {
 
                 //recent cases
-                var totalCasesTwoDaysAgo = response[0].Cases
-                var recentCase = parseInt(totalCases) - parseInt(totalCasesTwoDaysAgo)
+                var totalCasesTwoDaysAgo = response[0].Cases;
+                var recentCase = parseInt(totalCases) - parseInt(totalCasesTwoDaysAgo);
 
                 //recovered cases
                 $.ajax({
@@ -80,7 +78,6 @@ $("#submit").on("click", function () {
                     //active cases
                     var recoveredCases = response[0].Cases
                     var activeCase = parseInt(totalCases) - parseInt(recoveredCases)
-
                     var covidTotalH1 = $("<h2>").text("Country's Covid 19 Status: ");
                     var totalcasesDiv = $("<p>").text("Total Cases: " + totalCases);
                     var recentCaseDiv = $("<p>").text("Recent Confirmed Cases: " + recentCase);
@@ -90,19 +87,19 @@ $("#submit").on("click", function () {
                     $("#recentCase").append(recentCaseDiv);
                     $("#activeCase").append(activeCaseDiv);
 
-
                     //map color
-                    $("#map").css("border-style", "solid")
+                    $("#map").css("border-style", "solid");
                     if (activeCase < 1000) {
-                        $("#map").css("border-color", "green")
+                        $("#map").css("border-color", "green");
                     } else if (activeCase < 10000) {
-                        $("#map").css("border-color", "orange")
+                        $("#map").css("border-color", "orange");
                     } else {
-                        $("#map").css("border-color", "red")
-                    }
-                })
-            })
-        })
+                        $("#map").css("border-color", "red");
+                    };
+                });
+            });
+        });
+        //array that contains the country code and coresponding currency code
         let array = {
             "AD": "EUR",
             "AE": "AED",
@@ -356,26 +353,26 @@ $("#submit").on("click", function () {
         }
 
         let obj = array[countryCode]
-
+        //if the coresponding country code is found, make a call and convert the currency
         if (obj) {
             var currencyRateURl = "https://v6.exchangerate-api.com/v6/077422a8ec047bea40fab6ea/latest/" + obj
-
+            //currency call
             $.ajax({
                 url: currencyRateURl,
                 method: "GET"
             }).then(function (response) {
+                //compares it to Australian dollar
                 var inverseCurrency = response.conversion_rates.AUD
+                //inverts it to get the value compared to one Aus dollar
                 var currencyRateDecimal = 1 / inverseCurrency
                 currencyRate = currencyRateDecimal.toFixed(3)
                 var rate = $("<h3>").text("$1 AUD = " + currencyRate + obj)
                 $("#currency").append(rate);
-
+                //if the currency code is not found then...
             }).catch(function (err) {
                 var rate = $("<h2>").text("Currency Conversion Unavailable")
                 $("#currency").append(rate);
             })
         }
-
     });
-
 });
