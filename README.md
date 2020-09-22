@@ -9,7 +9,7 @@ get you in the local currency and how well the city & country fought of the coro
 also notice the border color of the map changes depending on how hard that city was affected by
 the coronavirus
 
-Here you will find a link to our deployed website: (LINK FOR SITE GITHUB IO)
+Here you will find a link to our deployed website: https://skoggy.github.io/project/
 
 ![Photo of website]()
 ![Photo of website]()
