@@ -91,28 +91,35 @@ html,
 }
 
 .frontcontent {
-    background: white;
-    width: 40%;
-    padding: 40px;
+    background:rgb(85, 93, 104);
+    width: 50%;
+    padding: 20px;
     margin: 100px auto;
+    border-radius: 20px;
 }
 
 .fronth2 {
-    color:black;
-    font-size: 35px;
+    color:tomato;
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .frontp {
     font-size: 25px;
-    color: black;
-}
-
-.frontul {
-    font-size: 25px;
-    color: black;
+    color:black;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .fronta {
-    color: black;
-    font-size: 14px;
+    border: solid black;
+    width: 50%;
+    background-color:tomato;
+    border-radius: 10px;
+    color:black;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    margin-left: 150px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
 }

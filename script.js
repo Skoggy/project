@@ -367,7 +367,7 @@ $("#submit").on("click", function () {
                 var inverseCurrency = response.conversion_rates.AUD
                 var currencyRateDecimal = 1 / inverseCurrency
                 currencyRate = currencyRateDecimal.toFixed(3)
-                var rate = $("<h3>").text("One AUS Dollar = " + currencyRate + obj)
+                var rate = $("<h3>").text("$1 AUD = " + currencyRate + obj)
                 $("#currency").append(rate);
 
             }).catch(function (err) {
