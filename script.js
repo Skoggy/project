@@ -93,7 +93,6 @@ $("#submit").on("click", function () {
 
                     //map color
                     $("#map").css("border-style", "solid")
-                    $("#map").css("border-width", "10px")
                     if (activeCase < 1000) {
                         $("#map").css("border-color", "green")
                     } else if (activeCase < 10000) {
@@ -368,7 +367,7 @@ $("#submit").on("click", function () {
                 var inverseCurrency = response.conversion_rates.AUD
                 var currencyRateDecimal = 1 / inverseCurrency
                 currencyRate = currencyRateDecimal.toFixed(3)
-                var rate = $("<h3>").text("One Australian Dollar equals to " + currencyRate + obj)
+                var rate = $("<h3>").text("One AUS Dollar = " + currencyRate + obj)
                 $("#currency").append(rate);
 
             }).catch(function (err) {

@@ -1,46 +1,38 @@
-body {
-height: 100%;
-}
-
-.container {
-display: flex;
-flex-direction: column;
-height: 100%;
-}
-
-.container-test {
-    flex: 1 1 auto;
-    background-color: red;
-}
-
-header {
-    flex: 0 1 auto;
-}
-footer {
-    flex: 0 1 auto;
-}
-
 #map  {
     height: 300px;
     width: 40%;
     float: right;
+    border-width: 10px;
 }
-
 .city-name, .covid {
-    text-align: center;
-    text-decoration: underline;
-    
+    text-align: center;    
 }
-
+.covid-cases {
+    margin-top: 100px;
+}
+/* Aligning Current Temp and Currency in the center of the map */
+.col-1 {
+    margin-top: 80px;
+    margin-bottom: 70px;
+}
 .current, .currency {
     text-align: center;
-    line-height: 1px;
+    margin-top: 5px;
 }
-
+.uk-form-width-medium {
+    width: 240px;
+}
+h1 {
+    margin-bottom: 20px;
+}
+h3 {
+    margin-top: 5px;
+}
 html,
         body {
             height: 100%;
             margin: 0;
+            background-color: rgb(85, 93, 104);
         }
 
         #box {
@@ -60,3 +52,33 @@ html,
         footer {
             flex: 0 1 auto;
         }
+
+/* Media Queries for Phone Responsivity */
+@media screen and (max-width: 660px) {
+    #map {
+        height: 250px;
+        width: 100%;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        border-width: 3px;
+        margin-bottom: 15px;
+    } 
+    h3 {
+        font-size: 16px;
+    }
+    h1 {
+        margin-bottom: 15px;
+            
+    }
+    h2 {
+        margin-top: 0px;
+        font-size: 25px;
+    }
+    .covid-cases {
+        margin-top: 20px;
+    }
+    .col-1 {
+        margin-bottom: 30px;
+    }
+}
