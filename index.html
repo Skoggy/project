@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <title>Travel Time</title>
 
     <!-- UIkit CSS -->
@@ -37,27 +36,34 @@
                 </div>
             </nav>
         </header>
+
         <div id="content">
             <section class="search-location" id="search-location">
                 <div class="uk-container" class="results-container">
                     <div class="uk-card uk-card-default uk-card-body">
 
-                        <div id="map"></div>
-                        <div>
-                            <div id="city-name" class="city-name"></div>
+                        <div id="city-name" class="city-name"></div>
+                        <div class="uk-divider-icon"></div>
+
+                        <div class="col-2">
+                            <div id="map"></div>
+                        </div>
+                        <div class="col-1">
                             <div id="current" class="current"></div>
                             <div id="currency" class="currency"></div>
-                            <br><br>
-                            <div class="covid-cases">
-                                <div id="covid" class="covid"></div>
-                                <div class="uk-divider-icon"></div>
-                                <div class="uk-text-center" uk-grid>
-                                    <div id="totalCases" class="uk-width-1-3@m"></div>
-                                    <div id="recentCase" class="uk-width-1-3@m"></div>
-                                    <div id="activeCase" class="uk-width-1-3@m"></div>
-                                </div>
+                        </div>
+
+                        <div class="covid-cases">
+                            <div id="covid" class="covid"></div>
+                            <div class="uk-divider-icon"></div>
+
+                            <div class="uk-text-center" uk-grid>
+                                <div id="totalCases" class="uk-width-1-3@m"></div>
+                                <div id="recentCase" class="uk-width-1-3@m"></div>
+                                <div id="activeCase" class="uk-width-1-3@m"></div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
