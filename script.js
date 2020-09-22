@@ -6,6 +6,7 @@ function clearAll() {
 }
 
 $("#submit").on("click", function () {
+    $("#begin").css("display", "none");
     clearAll();
     //weather call
     var queryParams = { "APPID": "8c321cc1716884b0a6eec6410a70fa25" }
