@@ -11,7 +11,7 @@ $("#submit").on("click", function () {
     //weather call
     var queryParams = { "APPID": "8c321cc1716884b0a6eec6410a70fa25" }
     queryParams.q = $("#city-input").val().trim();
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?"
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?"
     queryURL = queryURL + $.param(queryParams);
 
     $.ajax({
