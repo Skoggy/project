@@ -82,3 +82,37 @@ html,
         margin-bottom: 30px;
     }
 }
+
+/* frontpage */
+.frontpage {
+    background-image: url(https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.frontcontent {
+    background: white;
+    width: 40%;
+    padding: 40px;
+    margin: 100px auto;
+}
+
+.fronth2 {
+    color:black;
+    font-size: 35px;
+}
+
+.frontp {
+    font-size: 25px;
+    color: black;
+}
+
+.frontul {
+    font-size: 25px;
+    color: black;
+}
+
+.fronta {
+    color: black;
+    font-size: 14px;
+}
