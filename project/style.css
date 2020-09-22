@@ -1,0 +1,96 @@
+body {
+height: 100%;
+background-image: url(travel.jpg);
+background-size: cover;
+background-attachment: fixed;
+}
+
+.container {
+display: flex;
+flex-direction: column;
+height: 100%;
+}
+
+.container-test {
+    flex: 1 1 auto;
+    background-color: red;
+}
+
+header {
+    flex: 0 1 auto;
+}
+footer {
+    flex: 0 1 auto;
+}
+
+#map  {
+    height: 300px;
+    width: 40%;
+    float: right;
+}
+
+.city-name, .covid {
+    text-align: center;
+    text-decoration: underline;
+    
+}
+
+.current, .currency {
+    text-align: center;
+    line-height: 1px;
+}
+
+html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        #box {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+        }
+
+        header {
+            flex: 0 1 auto;
+        }
+
+        #content {
+            flex: 1 1 auto;
+        }
+
+        footer {
+            flex: 0 1 auto;
+        }
+
+/* second html */
+
+.frontpage {
+    background-image:url(https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.frontcontent{
+    background:white;
+    width: 30%;
+    padding: 30px;
+    margin: 80px auto;
+}
+.frontp{
+    font-size: 25px;
+    color:black;
+}
+.frontul{
+    font-size: 18px;
+    color: black;
+}
+.fronta{
+    color:black;
+    font-size: 14px;
+}
+.fronth2{
+    color:black;
+    font-size: 40px;
+}
