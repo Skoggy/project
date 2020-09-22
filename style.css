@@ -88,13 +88,13 @@ html,
 
 /* frontpage */
 .frontpage {
-    background-image: url(https://images.pexels.com/photos/1051075/pexels-photo-1051075.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+    background-image: url(http://media.bom.gov.au/social/upload/images/iStock-blue-sea-resize.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
 
 .frontcontent {
-    background:rgb(85, 93, 104);
+    background:transparent;
     width: 50%;
     padding: 20px;
     margin: 100px auto;
@@ -102,7 +102,7 @@ html,
 }
 
 .fronth2 {
-    color:tomato;
+    color:black;
     font-size: 50px;
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -111,13 +111,14 @@ html,
 .frontp {
     font-size: 25px;
     color:black;
+    font-weight: bold;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .fronta {
     border: solid black;
     width: 50%;
-    background-color:tomato;
+    background-color:rgb(85, 93, 104);
     border-radius: 10px;
     color:black;
     font-size: 20px;
