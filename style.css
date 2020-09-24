@@ -118,7 +118,7 @@ html,
 .fronta {
     border: solid black;
     width: 50%;
-    background-color:rgb(85, 93, 104);
+    background-color:skyblue;
     border-radius: 10px;
     color:black;
     font-size: 20px;
@@ -129,12 +129,11 @@ html,
 }
 
 /* Media Queries for Phone Responsivity - front page */
-/* Commented out while page being updated */
-/* @media screen and (max-width: 660px) {
+@media screen and (max-width: 660px) {
     .frontp {
     font-size: 18px;
     }
     .frontcontent {
         width: 70%;
     }
-} */
+} 
