@@ -10,7 +10,7 @@
 .covid-cases {
     margin-top: 100px;
 }
-/* Aligning Current Temp and Currency in the center of the map */
+/* col-1: Aligning Current Temp and Currency in the center of the map */
 .col-1 {
     margin-top: 80px;
     margin-bottom: 70px;
@@ -109,6 +109,7 @@ html,
 }
 
 .frontp {
+    text-align: center;
     font-size: 25px;
     color:black;
     font-weight: bold;
@@ -129,12 +130,15 @@ html,
 }
 
 /* Media Queries for Phone Responsivity - front page */
-/* Commented out while page being updated */
-/* @media screen and (max-width: 660px) {
+@media screen and (max-width: 660px) { */
     .frontp {
-    font-size: 18px;
+    font-size: 14px;
+    font-weight: 300;
     }
     .frontcontent {
         width: 70%;
     }
-} */
+    .fronta {
+        margin-left: 80px;
+    }
+}
