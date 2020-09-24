@@ -11,14 +11,17 @@ the coronavirus
 
 Here you will find a link to our deployed website: https://skoggy.github.io/project/
 
-![Photo of website]()
-![Photo of website]()
-![Photo of website]()
-![Photo of website]()
+![Photo of website](assets/img2.png)
+
+![Photo of website](assets/img3.png)
+
+![Photo of website](assets/img.png)
 
 
 
-Creators and designers of the website:
+
+
+Developers and designers of the website:
 
 https://github.com/Skoggy
 
