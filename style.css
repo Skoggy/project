@@ -109,6 +109,7 @@ html,
 }
 
 .frontp {
+    text-align: center;
     font-size: 25px;
     color:black;
     font-weight: bold;
@@ -135,5 +136,8 @@ html,
     }
     .frontcontent {
         width: 70%;
+    }
+    .fronta {
+        margin-left: 90px;
     }
 } 
