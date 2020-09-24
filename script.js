@@ -23,7 +23,7 @@ $("#submit").on("click", function () {
         function initMap() {
             var location = { lat: response.coord.lat, lng: response.coord.lon }
             var map = new google.maps.Map(document.querySelector("#map"), {
-                zoom: 10,
+                zoom: 12,
                 center: location
             });
             var marker = new google.maps.Marker({
