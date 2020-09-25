@@ -43,7 +43,7 @@ $("#submit").on("click", function () {
         //weather
         var kelvinChange = 273.15
         var cityName = $("<h1>").text(response.name);
-        var celsTemp = (response.main.feels_like) - kelvinChange;
+        var celsTemp = (response.main.temp) - kelvinChange;
         var celsDec = celsTemp.toFixed(2);
         var currentTemp = $("<h3>").text("Temperature: " + celsDec + "°C");
         var humidity = $("<h3>").text("Humidity: " + response.main.humidity + "%");
